@@ -1,0 +1,6 @@
+.fixed-image {
+    width: 50px;
+    height: 50px;
+    object-fit: contain; /* Conserve les proportions de l'image */
+    margin-right: 10px; /* Pour espacer l'image et le texte */
+}

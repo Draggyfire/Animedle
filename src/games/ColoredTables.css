@@ -1,0 +1,33 @@
+.colored-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.cell {
+    text-align: center;
+    padding: 20px;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.red {
+    background-color: red;
+}
+
+.blue {
+    background-color: blue;
+}
+
+.green {
+    background-color: green;
+}
+
+.yellow {
+    background-color: yellow;
+    color: black;
+}
+
+.purple {
+    background-color: purple;
+}

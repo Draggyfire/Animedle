@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Ichigo Kurosaki",
+    "zanpakuto": "Zangetsu",
+    "affiliation": "Soul Society",
+    "abilities": ["Getsuga Tensho", "Bankai", "Hollow Form"],
+    "type": "Humain, Shinigami, Hollow",
+    "arc": "Arc du Shinigami Remplaçant",
+    "image": "data:image/webp;base64,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"
+  },
+  {
+    "name": "Rukia Kuchiki",
+    "zanpakuto": "Sode no Shirayuki",
+    "affiliation": "Soul Society",
+    "abilities": ["Tsugi no Mai: Hakuren", "Shikai"],
+    "type": "Shinigami",
+    "arc": "Arc du Shinigami Remplaçant",
+    "image": "url_vers_image_rukia"
+  },
+  {
+    "name": "Sosuke Aizen",
+    "zanpakuto": "Kyoka Suigetsu",
+    "affiliation": "Arrancar, Soul Society (anciennement)",
+    "abilities": ["Hypnosis", "Hogyoku", "Bankai"],
+    "type": "Shinigami, Arrancar",
+    "arc": "Arc Soul Society",
+    "image": "url_vers_image_aizen"
+  },
+  {
+    "name": "Uryu Ishida",
+    "zanpakuto": null,
+    "affiliation": "Wandenreich, Quincy",
+    "abilities": ["Licht Regen", "Letzt Stil", "Vollständig"],
+    "type": "Quincy",
+    "arc": "Arc Soul Society",
+    "image": "url_vers_image_uryu"
+  },
+  {
+    "name": "Grimmjow Jaegerjaquez",
+    "zanpakuto": "Pantera",
+    "affiliation": "Arrancar, Espada",
+    "abilities": ["Desgarron", "Resurrección", "Gran Rey Cero"],
+    "type": "Hollow, Arrancar",
+    "arc": "Arc Arrancar",
+    "image": "url_vers_image_grimmjow"
+  }
+]
