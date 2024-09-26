@@ -15,21 +15,20 @@ const AutocompleteInput: React.FC = () => {
     const [inputValue, setInputValue] = useState<string>('');
     const [suggestions, setSuggestions] = useState<BleachCharacter[]>([]); // Suggestions de type BleachCharacter[]
     const [selectedIndex, setSelectedIndex] = useState<number>(0);
-    const [usedSuggestions, setUsedSuggestions] = useState<BleachCharacter[]>([]); // Utilisation de BleachCharacter[]
-
+    const [usedSuggestions, setUsedSuggestions] = useState<BleachCharacter[]>([]); // Utilisation de BleachCharacter[];
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
         setInputValue(value);
 
         if (value) {
             // Filtrer les suggestions basées sur la recherche et exclure les suggestions déjà utilisées
-            /*const filteredSuggestions = bleachData
+            const filteredSuggestions = bleachData
                 .filter(character =>
                     character.name.toLowerCase().includes(value.toLowerCase()) &&
                     !usedSuggestions.some(used => used.name === character.name) // Comparer par le nom pour exclure
                 );
-                */
-            //setSuggestions(filteredSuggestions);
+
+            setSuggestions(filteredSuggestions);
             setSelectedIndex(0); // Réinitialiser l'index sélectionné
         } else {
             setSuggestions([]); // Vider les suggestions si l'input est vide
