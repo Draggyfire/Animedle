@@ -22,6 +22,34 @@
 .green {
     background-color: green;
 }
+/* Classe pour cacher la ligne avant l'animation */
+.table-row-enter {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 1s ease-out, opacity 0.3s ease-out;
+}
+
+/* Classe pour montrer la ligne après l'animation */
+.table-row-enter-active {
+    opacity: 1;
+    max-height: 100px; /* Ajuster selon la hauteur de tes lignes */
+}
+
+/* Cacher initialement la cellule avec un décalage vers le bas */
+.cell-enter {
+    opacity: 0;
+    transform: translateY(20px); /* Effet de glissement vers le haut */
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+/* Apparition de la cellule */
+.cell-enter-active {
+    opacity: 1;
+    transform: translateY(0); /* Ramène la cellule à sa position initiale */
+}
+
+
 
 .yellow {
     background-color: yellow;

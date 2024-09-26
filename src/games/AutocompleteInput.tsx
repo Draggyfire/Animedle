@@ -11,38 +11,45 @@ interface BleachCharacter {
     type: string; // Exemple: "Human", "Shinigami", "Hollow", "Quincy", etc.
 }
 
-const AutocompleteInput: React.FC = () => {
+// Définir les props pour AutocompleteInput
+interface AutocompleteInputProps {
+    onCharacterSelected: (character: BleachCharacter) => void;
+}
+
+const AutocompleteInput: React.FC<AutocompleteInputProps> = ({ onCharacterSelected }) => {
     const [inputValue, setInputValue] = useState<string>('');
-    const [suggestions, setSuggestions] = useState<BleachCharacter[]>([]); // Suggestions de type BleachCharacter[]
+    const [suggestions, setSuggestions] = useState<BleachCharacter[]>([]);
     const [selectedIndex, setSelectedIndex] = useState<number>(0);
-    const [usedSuggestions, setUsedSuggestions] = useState<BleachCharacter[]>([]); // Utilisation de BleachCharacter[];
+    const [usedSuggestions, setUsedSuggestions] = useState<BleachCharacter[]>([]);
+
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const value = event.target.value;
         setInputValue(value);
 
         if (value) {
-            // Filtrer les suggestions basées sur la recherche et exclure les suggestions déjà utilisées
             const filteredSuggestions = bleachData
                 .filter(character =>
                     character.name.toLowerCase().includes(value.toLowerCase()) &&
-                    !usedSuggestions.some(used => used.name === character.name) // Comparer par le nom pour exclure
+                    !usedSuggestions.some(used => used.name === character.name)
                 );
-
             setSuggestions(filteredSuggestions);
-            setSelectedIndex(0); // Réinitialiser l'index sélectionné
+            setSelectedIndex(0);
         } else {
-            setSuggestions([]); // Vider les suggestions si l'input est vide
+            setSuggestions([]);
         }
     };
 
     const handleSuggestionClick = (suggestion: BleachCharacter) => {
-        setInputValue(suggestion.name); // Mettre à jour l'input avec le nom sélectionné
-        setSuggestions([]); // Vider les suggestions après la sélection
+        setInputValue(suggestion.name);
+        setSuggestions([]);
+        validateSelection(suggestion); // Valider la sélection
     };
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === 'Enter') {
-            validateSelection(); // Valider la sélection avec la touche "Enter"
+            if (suggestions.length > 0) {
+                validateSelection(suggestions[selectedIndex]);
+            }
         } else if (event.key === 'ArrowDown') {
             setSelectedIndex((prevIndex) => Math.min(prevIndex + 1, suggestions.length - 1));
         } else if (event.key === 'ArrowUp') {
@@ -50,19 +57,19 @@ const AutocompleteInput: React.FC = () => {
         }
     };
 
-    const validateSelection = () => {
-        if (suggestions.length > 0) {
-            const selectedCharacter = suggestions[selectedIndex];
-            console.log(selectedCharacter.name); // Afficher le personnage sélectionné dans la console
+    const validateSelection = (selectedCharacter: BleachCharacter) => {
+        console.log(selectedCharacter.name);
 
-            // Ajouter la suggestion validée à la liste des suggestions utilisées
-            setUsedSuggestions((prev) => [...prev, selectedCharacter]);
+        // Ajouter la suggestion validée à la liste des suggestions utilisées
+        setUsedSuggestions((prev) => [...prev, selectedCharacter]);
 
-            // Réinitialiser l'input et les suggestions après validation
-            setInputValue('');
-            setSuggestions([]);
-            setSelectedIndex(0);
-        }
+        // Appeler la fonction onCharacterSelected pour ajouter la ligne au tableau
+        onCharacterSelected(selectedCharacter);
+
+        // Réinitialiser l'input et les suggestions après validation
+        setInputValue('');
+        setSuggestions([]);
+        setSelectedIndex(0);
     };
 
     return (
@@ -83,7 +90,7 @@ const AutocompleteInput: React.FC = () => {
                             key={index}
                             action
                             onClick={() => handleSuggestionClick(suggestion)}
-                            active={index === selectedIndex} // Mettre en surbrillance la suggestion sélectionnée
+                            active={index === selectedIndex}
                             style={{ display: 'flex', alignItems: 'center' }}
                         >
                             <Image src={suggestion.image} alt={suggestion.name} rounded className="fixed-image" />
