@@ -23,11 +23,12 @@ const AutocompleteInput: React.FC = () => {
 
         if (value) {
             // Filtrer les suggestions basées sur la recherche et exclure les suggestions déjà utilisées
-            const filteredSuggestions = bleachData
+            /*const filteredSuggestions = bleachData
                 .filter(character =>
                     character.name.toLowerCase().includes(value.toLowerCase()) &&
                     !usedSuggestions.some(used => used.name === character.name) // Comparer par le nom pour exclure
                 );
+                */
             //setSuggestions(filteredSuggestions);
             setSelectedIndex(0); // Réinitialiser l'index sélectionné
         } else {
